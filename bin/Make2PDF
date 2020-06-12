@@ -1,0 +1,17 @@
+#!/bin/bash
+if [ "$1" != "" ]; then
+    filename=$1
+    pdf_file="${filename}.pdf"
+    md_file="${filename}.md"
+    
+    if test -f "$md_file"; then
+        echo "Reading in ${md_file}"
+
+        pandoc ${md_file} --from markdown --to latex --highlight-style tango -V linkcolor:cyan -V geometry:a4paper -V geometry:margin=2cm -V mainfont='DejaVu Serif' -V monofont='DejaVu Sans Mono' --pdf-engine=xelatex --toc --output ${pdf_file}
+        echo "Finished generating ${pdf_file}"
+    else
+        echo "File does not exist!"    
+    fi
+    else
+    echo "Too few arguments. Expected one argument!"
+fi
