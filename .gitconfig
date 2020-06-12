@@ -1,0 +1,10 @@
+[user]
+	email = kielhannes@web.de
+	name = Hannes Kiel
+[filesystem "Private Build|1.8.0_232-ea|/dev/sda1"]
+	timestampResolution = 1001 microseconds
+	minRacyThreshold = 5167 microseconds
+[alias]
+	s = status
+	fg = log --all --decorate --oneline --graph
+	last = log -1 HEAD
