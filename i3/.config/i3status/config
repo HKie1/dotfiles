@@ -1,0 +1,55 @@
+general {
+        colors = true
+        interval = 1
+}
+
+order += "disk /"
+order += "ethernet eth0"
+order += "battery 0"
+order += "memory"
+order += "load"
+order += "volume master"
+order += "tztime berlin"
+
+ethernet eth0 {
+        format_up = "E: %ip (%speed)"
+        format_down = "E: down"
+}
+
+battery 0 {
+        format = "%status %percentage %remaining %emptytime"
+        format_down = "No battery"
+	status_chr = "⚡ CHR"
+        status_bat = "🔋 BAT"
+        status_unk = "? UNK"
+        status_full = "🙂 FULL"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 10
+}
+
+tztime berlin {
+        format = "⏲️ %Y-%m-%d %H:%M:%S"
+        timezone = "Europe/Berlin"
+}
+
+load {
+        format = "⚙️ %5min"
+}
+
+memory {
+        format = "📦 %used/%total"
+        threshold_degraded = "10%"
+        format_degraded = "MEMORY: %free"
+}
+
+disk "/" {
+        format = "🗄️ %free/%total"
+}
+
+volume master {
+        format = "🔊 %volume"
+        format_muted = "🔇 MUTED"
+	device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
